@@ -481,7 +481,7 @@ processSpanPromise = (async () => {
     if (!isHelpRequest && (isInteractiveSetup || isStandaloneCommand)) {
       if (configuration) require('../lib/cli/ensure-supported-command')(configuration);
       if (isInteractiveSetup) {
-        if (!process.stdin.isTTY && !process.env.SLS_INTERACTIVE_SETUP_ENABLE) {
+        if (!require('@serverless/utils/log').isInteractive) {
           throw new ServerlessError(
             'Attempted to run an interactive setup in non TTY environment.\n' +
               "If that's intended, run with the SLS_INTERACTIVE_SETUP_ENABLE=1 environment variable",
